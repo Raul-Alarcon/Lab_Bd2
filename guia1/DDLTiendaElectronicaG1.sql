@@ -40,6 +40,10 @@ create table Clientes(
 	--  llaves
 	FOREIGN key (iddireccion) references Direcciones(IDDireccion)
 );
+create table Cargos(
+	IDCargo int primary key identity(1,1),
+	cargo varchar(50) not null
+);
 create table Empleados(
 	IDEmpleado int primary key identity(1,1),
 	nombreEmpleado varchar(20) not null,
@@ -49,10 +53,38 @@ create table Empleados(
 	telefono nchar(11) not null,
 	eMail varchar(40),
 	iddireccion int not null,
+	idcargo int not null
 	--  llaves
-	FOREIGN key (iddireccion) references Direcciones(IDDireccion)
+	FOREIGN key (iddireccion) references Direcciones(IDDireccion),
+	FOREIGN key (idcargo) references Cargos(IDCargo)
 );
-
+create table Opciones(
+	IDOpciones int primary key identity(1,1),
+	opcion varchar(50) not null
+);
+create table Roles(
+	IDRol int primary key identity(1,1),
+	mombreRol varchar(50) not null
+);
+create table AsignacionRolesOpciones(
+	IDAsignacionRol int primary key identity(1,1),
+	idrol int not null,
+	idopcion int not null,
+	-- laves
+	FOREIGN key (idrol) references Roles(IDRol),
+	FOREIGN key (idopcion) references Opciones(IDOpciones)
+);
+-- usuarios para la manipuacion de datos
+create table usuarios(
+	IDUsuario int primary key identity(1,1),
+	idempleado int not null,
+	idrol int not null,
+	usuario varchar(50) not null,
+	clave nchar(40) not null,
+	-- llaves
+	FOREIGN key (idrol) references Roles(IDRol),
+	FOREIGN key (idempleado) references Empleados(IDEmpleado)
+);
 create table Proveedores(
 	IDProveedor int primary key identity(1,1),
 	contacto varchar(30),
