@@ -95,7 +95,15 @@ create table Proveedores(
 	--  llaves
 	FOREIGN key (iddireccion) references Direcciones(IDDireccion)
 );
-
+create table Pedidos(
+	IDPedido int primary key identity(1,1),
+	idproveedor int not null,
+	fechaPedido datetime not null,
+	fechaRecibido datetime not null,
+	comentario varchar(100),
+	-- llaves
+	FOREIGN key (idproveedor) references Proveedores(IDProveedor)
+);
 create table categoriasProductos(
 	IDCategoria int primary key identity(1,1),
 	categoria varchar(40),
@@ -113,15 +121,24 @@ create table Productos(
 	nombreP varchar(30) not null,
 	descripcion varchar (45) not null,
 	precio money not null,
-	idproveedor int not null,
 	idcategoria int not null,
 	iddstok int not null, 
 	--  llaves
 	FOREIGN key (idcategoria) references categoriasProductos(IDCategoria),
-	FOREIGN key (iddstok) references DetallesStok(IDStok),
-	FOREIGN key (idproveedor) references Proveedores(IDProveedor)
+	FOREIGN key (iddstok) references DetallesStok(IDStok)
 );
-
+create table Compras(
+	IDCompra int primary key identity(1,1),
+	idproducto int not null,
+	idpedido int not null,
+	cantidad int not null,
+	precioUnidad money not null,
+	descuetoUnidad money not null,
+	comentarios varchar(200),
+	-- llaves
+	FOREIGN key (idproducto) references Productos(IDProducto),
+	FOREIGN key (idpedido) references Pedidos(IDPedido)
+);
 create table Facturas(
 	IDFactura int primary key identity(1,1),
 	fechaFactura datetime not null,
