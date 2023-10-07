@@ -31,8 +31,8 @@ create table Direcciones(
 );
 create table Clientes(
 	IDCliente int primary key identity(1,1),
-	nombreCliente varchar(20) not null,
-	apellidoCliente varchar(30) not null,
+	nombresCliente varchar(20) not null,
+	apellidosCliente varchar(30) not null,
 	dui nchar(11) not null,
 	telefono nchar(11),
 	eMail varchar(40),
@@ -46,8 +46,8 @@ create table Cargos(
 );
 create table Empleados(
 	IDEmpleado int primary key identity(1,1),
-	nombreEmpleado varchar(20) not null,
-	apellidoCliente varchar(30) not null,
+	nombresEmpleado varchar(20) not null,
+	apellidosEmpleado varchar(30) not null,
 	dui nchar(11) not null,
 	ISSS nchar(15) not null,
 	telefono nchar(11) not null,
