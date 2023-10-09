@@ -45,6 +45,7 @@ create table Empleados(
 	idEmpleado int primary key identity(1,1),
 	nombresEmpleado varchar(20) not null,
 	apellidosEmpleado varchar(30) not null,
+	fechaNacimiento date not null,
 	dui nchar(11) not null,
 	ISSS nchar(15) not null,
 	telefono nchar(11) not null,
