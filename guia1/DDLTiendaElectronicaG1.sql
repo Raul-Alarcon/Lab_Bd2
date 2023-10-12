@@ -80,7 +80,8 @@ create table Usuarios(
 -- Proveedores
 create table Proveedores(
 	idProveedor int primary key identity(1,1),
-	contacto varchar(30),
+	nombresContacto varchar(20),
+	ApellidosContacto varchar(30),
 	telefono nchar(11) not null,
 	eMail varchar(30) not null,
 	compania varchar(20) not null,
@@ -100,7 +101,7 @@ create table DetallesStok(
 create table Productos(
 	idProducto int primary key identity(1,1),
 	nombreP varchar(30) not null,
-	descripcion varchar (45) not null,
+	descripcion varchar (45),
 	precio money not null,
 	idCategoria int not null,
 	idStok int not null

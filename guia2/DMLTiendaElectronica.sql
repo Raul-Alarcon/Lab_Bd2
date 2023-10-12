@@ -371,6 +371,14 @@ insert into Direcciones values
 go
 select * from Direcciones;
 go
+-- clientes
+INSERT INTO Clientes VALUES
+	-- nombresCliente, apellidosCliente, dui, telefono, eMail, idDireccion)
+    ('Juan Alberto', 'Pérez González', '223456789-0', '7890-1234', 'juan@email.com', '1'),
+    ('Ana María', 'López Martínez', '713436649-1', '8901-2345', 'ana@gmail.com', '2'),
+    ('Carlos Andrés', 'Gómez Rodríguez', '731537890-2', '9012-3456', 'carlos@hotmail.com', '3'),
+    ('Sofía Isabel', 'Ramírez Sánchez', '745871901-3', '7123-4567', 'sofia@gmail.com', '4'),
+    ('Luis Alberto', 'Hernández Castillo', '356781012-4', '6123-4567', 'luis@hotmail.com', '5');
 -- EMPLEADOS
 -- Cargos
 go
@@ -427,12 +435,158 @@ select * from Opciones;
 go
 insert into Roles values
 -- NombreRol
-	('SysAdmin'),
-	('Gerente General'), -- 1
-	('Gerente Almacen'),-- 2
-	('Empleado Ventas'),-- 3
+	('SysAdmin'),  -- 1
+	('Gerente General'), -- 2
+	('Gerente Almacen'),-- 3
 	('Empleado Almacen'),-- 4
-	('RRHH');-- 5
+	('Empleado Ventas '),-- 5
+	('RRHH');-- 6
 go
 select * from Roles;
+go
+insert into AsignacionRolesOpciones values
+-- ID_Rol, ID_Opcion
+	-- SysAdmin: Todos los permisos
+	('1', '1'), ('1', '2'), ('1', '3'), ('1', '4'), 
+	('1', '5'), ('1', '6'), ('1', '7'), ('1', '8'),
+	('1', '9'), ('1', '10'), ('1', '11'), ('1', '12'),
+	('1', '13'), ('1', '14'), ('1', '15'), ('1', '16'),
+	('1', '17'), ('1', '18'), ('1', '19'), ('1', '20'),
+	-- gerente general
+	('2', '1'), ('2', '2'), ('2', '3'), ('2', '4'), 
+	('2', '5'), ('2', '6'), ('2', '7'), ('2', '8'),
+	('2', '9'), ('2', '10'), ('2', '11'), ('2', '12'),
+	('2', '13'), ('2', '14'), ('2', '15'), ('2', '16'),
+	('2', '17'), ('2', '18'), ('2', '19'), ('2', '20'),
+	-- Gerente Almacén
+	('3', '5'), -- Direcciones
+	('3', '13'), -- Pedidos
+	('3', '14'), -- Compras
+	('3', '15'), -- Categorías Productos
+	('3', '16'), -- DetalleStok
+	('3', '17'), -- Productos
+	('3', '18'); -- Facturas
+	-- Empleado Almacén
+	('4', '16'), -- Categorías Productos
+	('4', '17'), -- DetalleStok
+	('4', '18'); -- Productos
+	-- Empleado Ventas
+	('5', '5'), -- Direcciones
+	('5', '6'), -- Clientes
+	('5', '19'), -- Productos
+	('5', '20'); -- Facturas
+	-- RRHH:
+	('6', '5'),  -- Direcciones  
+	('6', '7'),  -- Cargos
+	('6', '8');  -- Empleados
+go
+
+select * from AsignacionRolesOpciones
+go
+insert into Usuarios values
+	-- ID_Empleado, ID_Rol, Usuario, Clave
+	-- Administrador
+	('1', '1', 'admin_joseperez', 'root'),
+	-- GerenteGeneral
+	('2', '2', 'gg_diegogonzales', 'Gonzales1234'),
+	-- GerenteAlmacen
+	('3', '3', 'ga_raulramirez', 'Ramirez1234'),
+	-- empleadoAlmacen
+	('4', '4', 'a_juanaperez', 'Perez1234');
+	-- empleadoVentas
+	('5', '5', 'v_melvincastro', 'Castro1234'),
+	-- RRHH
+	('6', '6', 'rrhh_juanhernandez', 'Hernandez1234');
+go
+
+select * from Usuarios;
+go
+-- Proveedores
+insert into Proveedores values
+    ('Juan Alberto', 'Pérez González', '6541-2378', 'juan@outlook.com', 'Tech Solutions', '7'), 
+	('Ana María', 'López Martínez', '6897-6543', 'ana@gmail.com', 'InnovaTech', '8'),
+	('Carlos Andrés', 'Gómez Rodríguez', '6123-4567', 'carlos@outlook.com', 'ElectroSoluciones', '9'),
+	('Sofía Isabel', 'Ramírez Sánchez', '6565-6565', 'sofia@gmail.com', 'Global Electronics', '10');
+go
+
+select * from Proveedores;
+go
+-- Categorías de Productos
+insert into CategoriasProductos values
+	-- idCategoria, categoria, detalles
+    ('Laptops', 'Laptops y computadoras portátiles'),
+    ('Smartphones', 'Teléfonos inteligentes y accesorios'),
+    ('Electrodomésticos', 'Electrodomésticos para el hogar');
+go 
+select * from CategoriasProductos;
+go
+-- Detalles de Stock
+insert into DetallesStok values
+	-- idStok, cantidadStok, descripcion
+    (100, 'Laptops disponibles'),
+    (200, 'Smartphones en stock'),
+    (50, 'Lavadoras y secadoras'),
+    (75, 'Refrigeradoras disponibles'),
+    (30, 'Impresoras y escáneres'),
+    (20, 'Televisores LED');
+go 
+select * from DetallesStok;
+go
+-- Productos
+insert into Productos values
+	-- idProducto, nombreP, descripcion, precio, idCategoria, idStok 
+    ('Dell XPS 13', NULL, 1099.99, 1, 1),
+    ('MacBook Air', NULL, 999.99, 1, 1),
+    ('iPhone 13 Pro', NULL, 999.99, 2, 2),
+    ('Samsung Galaxy S22', NULL, 899.99, 2, 2),
+    ('LG Washing Machine', NULL, 599.99, 3, 3),
+    ('Sony 65" 4K TV', NULL, 1299.99, 3, 6);
+go 
+select * from Productos;
+go
+-- Pedidos
+-- Pedidos
+INSERT INTO Pedidos VALUES
+  ('1', '2023-09-20 09:00:00', '2023-09-25 14:30:00', 'Pedido de suministros regulares'),
+  ('2', '2023-09-20 09:30:00', '2023-09-26 10:15:00', 'Pedido urgente de productos electrónicos'),
+  ('3', '2023-09-21 10:00:00', '2023-09-27 16:45:00', 'Pedido de material de oficina'),
+  ('1', '2023-09-22 08:15:00', '2023-09-29 13:20:00', 'Pedido de dispositivos móviles'),
+  ('2', '2023-09-23 09:45:00', '2023-09-30 11:30:00', 'Pedido de computadoras portátiles'),
+  ('3', '2023-09-24 11:30:00', '2023-10-01 15:00:00', 'Pedido de routers y switches');
+go
+select * from Pedidos;
+go
+-- Compras
+INSERT INTO Compras VALUES
+  ('1', '1', '50', '399.99', '10.00', 'Compra de 50 smartphones con descuento'),
+  ('2', '2', '20', '799.99', '15.00', 'Compra de 20 laptops con descuento'),
+  ('3', '3', '200', '49.99', '5.00', 'Compra de 200 routers para suministros regulares'),
+  ('1', '4', '100', '399.99', '10.00', 'Compra de 100 smartphones con descuento'),
+  ('2', '5', '50', '799.99', '15.00', 'Compra de 50 laptops con descuento'),
+  ('3', '6', '500', '49.99', '5.00', 'Compra de 500 routers para suministros regulares');
+go
+select * from Compras;
+go
+-- Inserciones de Facturas y DetallesFacturas
+INSERT INTO Facturas (fechaFactura, comentario, idcliente, idempleado)
+VALUES
+    ('2023-09-20 09:00:00', NULL, '1', '2'),
+    ('2023-09-21 10:00:00', NULL, '2', '2'),
+    ('2023-09-22 08:15:00', NULL, '3', '5'),
+    ('2023-09-23 09:45:00', NULL, '4', '5'),
+    ('2023-09-24 11:30:00', NULL, '5', '5');
+
+INSERT INTO DetallesFacturas (idProducto, idFactura, cantidad, iva, descuento)
+VALUES
+    ('1', '1', '10', '25.00', '5.00'),
+    ('2', '1', '5', '10.00', '2.00'),
+    ('3', '2', '7', '17.50', '3.50'),
+    ('4', '2', '3', '7.50', '1.50'),
+    ('5', '3', '15', '37.50', '7.50'),
+    ('6', '3', '8', '20.00', '4.00'),
+    ('7', '4', '12', '30.00', '6.00'),
+    ('8', '4', '6', '15.00', '3.00'),
+    ('9', '5', '20', '50.00', '10.00'),
+    ('10', '5', '10', '25.00', '5.00');
+
 
