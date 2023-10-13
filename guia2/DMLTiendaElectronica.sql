@@ -465,16 +465,16 @@ insert into AsignacionRolesOpciones values
 	('3', '15'), -- Categorías Productos
 	('3', '16'), -- DetalleStok
 	('3', '17'), -- Productos
-	('3', '18'); -- Facturas
+	('3', '18'), -- Facturas
 	-- Empleado Almacén
 	('4', '16'), -- Categorías Productos
 	('4', '17'), -- DetalleStok
-	('4', '18'); -- Productos
+	('4', '18'), -- Productos
 	-- Empleado Ventas
 	('5', '5'), -- Direcciones
 	('5', '6'), -- Clientes
 	('5', '19'), -- Productos
-	('5', '20'); -- Facturas
+	('5', '20'), -- Facturas
 	-- RRHH:
 	('6', '5'),  -- Direcciones  
 	('6', '7'),  -- Cargos
@@ -492,7 +492,7 @@ insert into Usuarios values
 	-- GerenteAlmacen
 	('3', '3', 'ga_raulramirez', 'Ramirez1234'),
 	-- empleadoAlmacen
-	('4', '4', 'a_juanaperez', 'Perez1234');
+	('4', '4', 'a_juanaperez', 'Perez1234'),
 	-- empleadoVentas
 	('5', '5', 'v_melvincastro', 'Castro1234'),
 	-- RRHH
@@ -568,25 +568,28 @@ go
 select * from Compras;
 go
 -- Inserciones de Facturas y DetallesFacturas
-INSERT INTO Facturas (fechaFactura, comentario, idcliente, idempleado)
-VALUES
+INSERT INTO Facturas VALUES
+	-- fechaFactura ,comentario, idclient, idempleado 
     ('2023-09-20 09:00:00', NULL, '1', '2'),
     ('2023-09-21 10:00:00', NULL, '2', '2'),
     ('2023-09-22 08:15:00', NULL, '3', '5'),
     ('2023-09-23 09:45:00', NULL, '4', '5'),
     ('2023-09-24 11:30:00', NULL, '5', '5');
-
-INSERT INTO DetallesFacturas (idProducto, idFactura, cantidad, iva, descuento)
-VALUES
+go
+select * from Facturas;
+go
+INSERT INTO DetallesFacturas VALUES
+-- idProducto, idFactura, cantidad, iva, descuento
     ('1', '1', '10', '25.00', '5.00'),
     ('2', '1', '5', '10.00', '2.00'),
     ('3', '2', '7', '17.50', '3.50'),
     ('4', '2', '3', '7.50', '1.50'),
     ('5', '3', '15', '37.50', '7.50'),
     ('6', '3', '8', '20.00', '4.00'),
-    ('7', '4', '12', '30.00', '6.00'),
-    ('8', '4', '6', '15.00', '3.00'),
-    ('9', '5', '20', '50.00', '10.00'),
-    ('10', '5', '10', '25.00', '5.00');
-
-
+    ('1', '4', '12', '30.00', '6.00'),
+    ('2', '4', '6', '15.00', '3.00'),
+    ('3', '5', '20', '50.00', '10.00'),
+    ('4', '5', '10', '25.00', '5.00');
+go
+select * from DetallesFacturas;
+go
