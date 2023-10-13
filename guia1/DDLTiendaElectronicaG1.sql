@@ -50,7 +50,7 @@ create table Empleados(
 	ISSS nchar(15) not null,
 	telefono nchar(11) not null,
 	eMail varchar(40),
-	cargo int not null,
+	idCargo int not null,
 	idDireccion int not null
 );
 
@@ -150,7 +150,7 @@ alter table Direcciones add FOREIGN key (idDistrito) references Distritos(idDist
 alter table Clientes add FOREIGN key (idDireccion) references Direcciones(idDireccion);
 -- empleado
 alter table Empleados add FOREIGN key (idDireccion) references Direcciones(idDireccion);
-alter table Empleados add FOREIGN key (cargo) references Cargos(idCargo);
+alter table Empleados add FOREIGN key (idCargo) references Cargos(idCargo);
 -- roles
 alter table AsignacionRolesOpciones add FOREIGN key (idRol) references Roles(idRol);
 alter table AsignacionRolesOpciones add FOREIGN key (idOpcion) references Opciones(idOpcion);
