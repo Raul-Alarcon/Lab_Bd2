@@ -1,6 +1,6 @@
 	SysAdmin: Este rol tendría acceso completo a todas las tablas y operaciones en la base de datos.
 		
-		creacion y lectura
+		creacion, lectura y modificaion
 	
 	GerenteGeneral: Este rol tendría acceso completo a todas las tablas y operaciones en la base de datos.
 		
@@ -31,7 +31,12 @@
 			Pedidos
 			Compras
 	GerenteAlmacen: Este rol estaría relacionado con los empleados encargados del almacén y tendría permisos para acceder a las siguientes tablas:
-
+		Lectura:
+			Departamentos
+			Municipios
+			Distritos
+			Direcciones
+			Empleados
 		Modificacion Creacion:
 			Productos
 			categoriasProductos
@@ -50,15 +55,3 @@
 		Modificacion, creacion
 			Cargos
 			Empleados
-	UsuarioCliente: Este rol estaría relacionado con los clientes y tendría permisos para acceder a la tabla Clientes y sus propios datos.
-
-		Lectura:
-			Departamentos
-			Municipios
-			Distritos
-			Direcciones
-		Modificacion:
-			Direcciones
-			Clientes
-		Creacion:
-			Clientes
