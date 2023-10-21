@@ -1,7 +1,7 @@
+-- use tiendaElectronica;
 create procedure [NRCliente]
-
-	@nombreCliente varchar(60),
-	@apellidoCliente varchar(60),
+	@nombresCliente varchar(60),
+	@apellidosCliente varchar(60),
 	@dui varchar(60),
 	@telefono varchar(60),
 	@eMail varchar(60),
@@ -10,10 +10,10 @@ create procedure [NRCliente]
 	as
 	begin 
 
-	insert into [Clientes] (nombreCliente, apellidoCliente, dui, telefono, eMail, iddireccion)
+	insert into [Clientes] (nombresCliente, apellidosCliente, dui, telefono, eMail, iddireccion)
 	values 
-	(@nombreCliente, 
-	@apellidoCliente, 
+	(@nombresCliente, 
+	@apellidosCliente, 
 	@dui, 
 	@telefono,
 	@eMail, 
@@ -21,7 +21,14 @@ create procedure [NRCliente]
 
 	select * from Clientes;
 
-	end
+	end;
 
-	exec [NRCliente] @nombreCliente = 'Raul' , @apellidoCliente= 'Alarcon' , @dui = '00238734618' , @telefono = '3451-5623' , @eMail = 'raul@example.com'
-	, @iddireccion = '1'
+
+
+	exec [NRCliente] 
+	@nombresCliente = 'Raul Alejandro' , 
+	@apellidosCliente= 'Hernandez Sosa' ,
+	@dui = '122334567-0' , 
+	@telefono = '3451-5623' , 
+	@eMail = 'alejandro@gmail.com',
+	@iddireccion = '3';
